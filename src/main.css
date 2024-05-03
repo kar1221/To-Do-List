@@ -1,5 +1,5 @@
 :root {
-  --zinc-900: #18181B;
+  --zinc-900: #18181b;
   --zinc-800: #27272a;
   --zinc-600: #52525b;
   --zinc-400: #a1a1aa;
@@ -18,10 +18,11 @@
   --green-800: #166534;
 
   --title-font: "Pacifico", sans-serif;
+  --general-font: "Inter", sans-serif;
 }
 
 .wrapper {
-  height: 100vh;
+  min-height: 100dvh;
   background: var(--zinc-900);
   display: flex;
   flex-direction: column;
@@ -36,6 +37,7 @@
   background-color: var(--zinc-800);
   padding: 1.75rem 2rem;
   border-radius: 1.25rem;
+  margin-top: 2%;
 
   iconify-icon {
     color: var(--amber-400);
@@ -50,5 +52,11 @@
 }
 
 .main-section {
-  display: flex;
+  margin-top: 2%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 30%));
+  grid-auto-rows: 1fr;
+  justify-content: center;
+  flex: 1;
 }

@@ -1,16 +1,20 @@
+// Modules
 import "iconify-icon";
-import "./css-reset.css"
-import "./style.css";
-import TaskAmount from "./components/TaskAmount";
+// Components
+// Types
 import { TaskTypes } from "./Shared/Task.types";
-import Subscriber from "./Helpers/Subscriber";
-import { tasksEvent } from "./Shared/SubscribersEvents.Enum";
+// Styles
+import "./css-reset.css";
+import "./main.css";
+import Column from "./components/Column";
 
 const main = document.querySelector("#main");
 
-const taskAmount = new TaskAmount(0, TaskTypes.TODO);
+const column = new Column(TaskTypes.TODO);
+main!.appendChild(column.ComputedElement());
+const column2 = new Column(TaskTypes.ONGOING);
+main!.appendChild(column2.ComputedElement());
+const column3 = new Column(TaskTypes.COMPLETED);
+main!.appendChild(column3.ComputedElement());
 
-main!.appendChild(taskAmount.ComputedElement());
 
-Subscriber.Emit(tasksEvent.ON_TASK_AMOUNT_INCREASED, 2);
-Subscriber.Emit<number>(tasksEvent.ON_TASK_AMOUNT_INCREASED, prev => prev + 1);
