@@ -1,0 +1,54 @@
+:root {
+  --zinc-900: #18181B;
+  --zinc-800: #27272a;
+  --zinc-600: #52525b;
+  --zinc-400: #a1a1aa;
+  --white: #f2f2f2;
+
+  --indingo-400: #818cf8;
+  --indingo-600: #4f46e5;
+  --indingo-800: #3730a3;
+
+  --amber-400: #fbbf24;
+  --amber-600: #d97706;
+  --amber-800: #92400e;
+
+  --green-400: #4ade80;
+  --green-600: #16a34a;
+  --green-800: #166534;
+
+  --title-font: "Pacifico", sans-serif;
+}
+
+.wrapper {
+  height: 100vh;
+  background: var(--zinc-900);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  background-color: var(--zinc-800);
+  padding: 1.75rem 2rem;
+  border-radius: 1.25rem;
+
+  iconify-icon {
+    color: var(--amber-400);
+    font-size: 2.5rem;
+  }
+
+  h1 {
+    font-family: var(--title-font);
+    color: white;
+    font-size: 2.25rem;
+  }
+}
+
+.main-section {
+  display: flex;
+}
