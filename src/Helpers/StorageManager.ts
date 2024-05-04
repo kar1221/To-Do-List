@@ -1,7 +1,8 @@
-import { CardData } from "@/Shared/Card.types";
+import { CardData, Priority } from "@/Shared/Card.types";
 import LocalStorageManager from "./LocalStorageManager";
 import Subscriber from "./Subscriber";
 import { StorageEvent } from "@/Shared/SubscribersEvents.Enum";
+import { TaskTypes } from "@/Shared/Task.types";
 
 const MyStorageManager = (function () {
   // Don't judge the name, i'm bad at naming.
@@ -17,8 +18,23 @@ const MyStorageManager = (function () {
   };
 
   const RemoveItem = (cardData: CardData) => {
-    const index = storage.indexOf(cardData)
+    const index = storage.indexOf(cardData);
     storage.splice(index, 1);
+
+    Subscriber.Emit<CardData[]>(StorageEvent.ON_ITEM_MODIFIED, GetItems());
+  };
+
+  const ModifyTaskType = (uuid: string, taskType: TaskTypes) => {
+    storage = storage.map((data) => {
+      if (data.uuid === uuid) {
+        return {
+          ...data,
+          status: taskType,
+        };
+      } else {
+        return data;
+      }
+    });
 
     Subscriber.Emit<CardData[]>(StorageEvent.ON_ITEM_MODIFIED, GetItems());
   };
@@ -27,6 +43,7 @@ const MyStorageManager = (function () {
     AddItems,
     GetItems,
     RemoveItem,
+    ModifyTaskType
   };
 })();
 

@@ -29,15 +29,48 @@
   align-items: center;
 }
 
+.navbar {
+  display: flex;
+  width: 100%;
+  padding: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+    border: none;
+    background-color: #7c3aed;
+    border-radius: .5rem;
+    height: 50px;
+    color: white;
+    font-family: var(--general-font);
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    gap: .25rem;
+    padding: 0 1rem;
+
+    &:hover {
+      background-color: #5b21b6;
+    }
+
+    iconify-icon {
+      font-size: 1.5rem;
+    }
+  }
+}
+
 .logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  background-color: var(--zinc-800);
   padding: 1.75rem 2rem;
-  border-radius: 1.25rem;
-  margin-top: 2%;
+  border-radius: .5rem;
+  background-color: var(--zinc-800);
 
   iconify-icon {
     color: var(--amber-400);
@@ -53,10 +86,11 @@
 
 .main-section {
   margin-top: 2%;
-  width: 80%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 30%));
-  grid-auto-rows: 1fr;
-  justify-content: center;
+  width: max(960px, 100%);
+  display: flex;
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 30%));
+  grid-auto-rows: 1fr; */
   flex: 1;
+  /* overflow: scroll; */
+  justify-content: center;
 }

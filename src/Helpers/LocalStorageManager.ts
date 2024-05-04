@@ -22,7 +22,6 @@ const LocalStorageManager = (function () {
 
   return {
     getLocalData,
-    setLocalData
   };
 })();
 

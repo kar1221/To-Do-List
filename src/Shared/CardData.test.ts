@@ -8,7 +8,7 @@ export const TestData: CardData[] = [
     title: "test1",
     priority: Priority.IMPORTANT,
     status: TaskTypes.ONGOING,
-    createdDate: new Date(Date.now()),
+    createdDate: new Date(2023, 5, 3),
     DueDate: new Date(2024, 5, 3),
   },
   {
