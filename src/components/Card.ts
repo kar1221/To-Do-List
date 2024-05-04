@@ -1,6 +1,7 @@
 import { IComponent } from "./Component.interface";
 import { CardData } from "@/Shared/Card.types";
 import {format} from "date-fns";
+import MyStorageManager from "@/Helpers/StorageManager";
 
 import "./Card.css"
 
@@ -62,6 +63,11 @@ class Card implements IComponent {
       trashButton.classList.add("trash-button");
       const trashIcon = document.createElement<"iconify-icon">("iconify-icon");
       trashIcon.setAttribute("icon", "mdi:trash-can");
+      
+      trashButton.addEventListener("click", () => {
+        MyStorageManager.RemoveItem(this.cardData);
+      })
+
       trashButton.appendChild(trashIcon);
       cardFooter.appendChild(trashButton);
       
@@ -71,8 +77,15 @@ class Card implements IComponent {
       return card;
   }
 
-  UpdateElement(cardData: CardData): void {
-    if(!this.DOMReference) return;
+  UpdateElement(): void {
+  }
+
+  public IsIdenticalTo(CardData: CardData) {
+    return this.cardData.uuid === CardData.uuid;
+  }
+
+  public DeleteCard() {
+    this.DOMReference["card"].remove();
   }
 }
 

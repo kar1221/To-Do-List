@@ -1,6 +1,7 @@
 import { TaskTypes } from "./Task.types";
 
 export type CardData = {
+  uuid: string;
   title: string;
   createdDate: Date;
   DueDate: Date;

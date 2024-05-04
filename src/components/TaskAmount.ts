@@ -1,10 +1,10 @@
-import "./TaskAmount.css";
 import { IComponent } from "./Component.interface";
 import { TaskTypes } from "@/Shared/Task.types";
 import { CardData } from "@/Shared/Card.types";
 import Subscriber from "@/Helpers/Subscriber";
 import { StorageEvent } from "@/Shared/SubscribersEvents.Enum";
 import MyStorageManager from "@/Helpers/StorageManager";
+import "./TaskAmount.css";
 
 class TaskAmount implements IComponent {
   private TaskType: TaskTypes;
