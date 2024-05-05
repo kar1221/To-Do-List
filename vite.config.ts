@@ -3,4 +3,5 @@ import tsConfigPath from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [tsConfigPath()],
+  base: "/To-Do-List/"
 })
