@@ -53,12 +53,12 @@
       border-radius: .5rem;
       padding: 0.5rem;
       display: flex;
-      font-weight: 500;
+      font-weight: 400;
       justify-content: center;
       align-items: center;
       color: white;
       text-transform: capitalize;
-      font-size: 1rem;
+      font-size: .75rem;
     }
 
     button {

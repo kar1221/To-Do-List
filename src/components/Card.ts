@@ -4,6 +4,7 @@ import { format, differenceInDays } from "date-fns";
 import MyStorageManager from "@/Helpers/StorageManager";
 
 import "./Card.css";
+import { TaskTypes } from "@/Shared/Task.types";
 
 class Card implements IComponent {
   private DOMReference: Record<string, HTMLElement> = {};
@@ -49,13 +50,29 @@ class Card implements IComponent {
     const daysBeforeDueDate = differenceInDays(
       this.cardData.DueDate,
       new Date(Date.now())
-    ).toString();
-    if (daysBeforeDueDate === "0") dueDate.textContent = "Today";
-    else dueDate.textContent = `${daysBeforeDueDate} days left`;
+    );
+
+    let dateContent = "";
+
+    if (daysBeforeDueDate === 0) {
+      dateContent = "Today";
+    } else if (daysBeforeDueDate === 1) {
+      dateContent = "Tomorrow";
+    } else if (daysBeforeDueDate < 0) {
+      dateContent = `${-daysBeforeDueDate} days ago`;
+    } else {
+      dateContent = `In ${daysBeforeDueDate} days`;
+    }
+
     dueDate.textContent = `${format(
       this.cardData.DueDate,
       "PP"
-    )} (${daysBeforeDueDate} days left)`;
+    )} (${dateContent})`;
+
+    if (this.cardData.status === TaskTypes.COMPLETED) {
+      dueDate.style.textDecoration = "line-through";
+    }
+
     dueDateContainer.appendChild(dueDate);
     datesContainer.appendChild(dueDateContainer);
 
@@ -72,8 +89,13 @@ class Card implements IComponent {
       new Date(Date.now()),
       this.cardData.createdDate
     ).toString();
-    if (days === "0") createdDate.textContent = "Today";
-    else createdDate.textContent = `${days} days ago`;
+
+    if (days === "0") {
+      createdDate.textContent = "Today";
+    } else {
+      createdDate.textContent = `${days} days ago`;
+    }
+
     createDateContainer.appendChild(createdDate);
     datesContainer.appendChild(createDateContainer);
 

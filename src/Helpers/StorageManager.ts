@@ -1,4 +1,4 @@
-import { CardData, Priority } from "@/Shared/Card.types";
+import { CardData } from "@/Shared/Card.types";
 import LocalStorageManager from "./LocalStorageManager";
 import Subscriber from "./Subscriber";
 import { StorageEvent } from "@/Shared/SubscribersEvents.Enum";
@@ -8,7 +8,7 @@ const MyStorageManager = (function () {
   // Don't judge the name, i'm bad at naming.
   let storage: CardData[] = LocalStorageManager.getLocalData();
 
-  const AddItems = (cardData: CardData) => {
+  const AddItem = (cardData: CardData) => {
     storage.push(cardData);
     Subscriber.Emit<CardData[]>(StorageEvent.ON_ITEM_MODIFIED, GetItems());
   };
@@ -40,7 +40,7 @@ const MyStorageManager = (function () {
   };
 
   return {
-    AddItems,
+    AddItems: AddItem,
     GetItems,
     RemoveItem,
     ModifyTaskType

@@ -98,12 +98,12 @@ type TaskContainerInfoArgs = {
 const TaskContainerInfo: TaskContainerInfoArgs = {
   [TaskTypes.TODO]: {
     icon: "mdi:new-box",
-    title: "To Do",
+    title: "New",
     backgroundColor: "indingo",
   },
   [TaskTypes.ONGOING]: {
     icon: "mdi:progress-clock",
-    title: "Ongoing",
+    title: "On Going",
     backgroundColor: "amber",
   },
   [TaskTypes.COMPLETED]: {
