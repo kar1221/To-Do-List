@@ -3,6 +3,7 @@ import LocalStorageManager from "./LocalStorageManager";
 import Subscriber from "./Subscriber";
 import { StorageEvent } from "@/Shared/SubscribersEvents.Enum";
 import { TaskTypes } from "@/Shared/Task.types";
+import { Priority } from "@/Shared/Card.types";
 
 const MyStorageManager = (function () {
   // Don't judge the name, i'm bad at naming.
@@ -39,11 +40,27 @@ const MyStorageManager = (function () {
     Subscriber.Emit<CardData[]>(StorageEvent.ON_ITEM_MODIFIED, GetItems());
   };
 
+  const ModifyPriority = (uuid: string, priority: Priority) => {
+    storage = storage.map((data) => {
+      if (data.uuid === uuid) {
+        return {
+          ...data,
+          priority: priority,
+        };
+      } else {
+        return data;
+      }
+    });
+    
+    Subscriber.Emit<CardData[]>(StorageEvent.ON_ITEM_MODIFIED, GetItems());
+  }
+
   return {
-    AddItems: AddItem,
+    AddItem,
     GetItems,
     RemoveItem,
-    ModifyTaskType
+    ModifyTaskType,
+    ModifyPriority
   };
 })();
 

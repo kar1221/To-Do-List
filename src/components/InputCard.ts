@@ -121,7 +121,7 @@ class InputCard implements IComponent {
         status: TaskTypes.TODO,
       };
 
-      MyStorageManager.AddItems(cardData);
+      MyStorageManager.AddItem(cardData);
       container.remove();
     });
 

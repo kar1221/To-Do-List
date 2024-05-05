@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prod": "npm run prod-add && npm run prod-commit && npm run prod-push",
+    "prod-add": "git add ./dist/ --force",
+    "prod-commit": "git commit -m 'prod'",
+    "prod-push": "git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.8",

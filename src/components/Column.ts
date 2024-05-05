@@ -81,8 +81,8 @@ class Column implements IComponent {
   }
 
   UpdateElement(data: CardData[]): void {
-    this.CreateCards(data);
     this.RemoveCards(data);
+    this.CreateCards(data);
   }
 
   private CreateCards(data?: CardData[]): void {
@@ -117,7 +117,7 @@ class Column implements IComponent {
     });
   }
 
-  public getCardDataToBeDeleted(data: CardData[]): CardData[] {
+  private getCardDataToBeDeleted(data: CardData[]): CardData[] {
     const storageItems = data;
 
     const different = this.cardData.filter((x) => !storageItems.includes(x));
@@ -125,7 +125,7 @@ class Column implements IComponent {
     return different.filter((x) => x.status === this.taskType);
   }
 
-  public getCardDataToBeAdded(data: CardData[]): CardData[] {
+  private getCardDataToBeAdded(data: CardData[]): CardData[] {
     const storageItems = data;
 
     const different = storageItems.filter((x) => !this.cardData.includes(x));

@@ -103,11 +103,51 @@ class Card implements IComponent {
 
     const cardFooter = document.createElement<"div">("div");
     cardFooter.classList.add("card-footer");
+
+    const priorityContainer = document.createElement<"div">("div");
+    priorityContainer.classList.add("priority-container");
+
     const status = document.createElement<"p">("p");
-    status.style.backgroundColor =
+    const statusIcon = document.createElement<"div">("div");
+    statusIcon.classList.add("status-icon");
+    statusIcon.style.backgroundColor =
       priorityColor[this.cardData.priority].backgroundColor;
     status.textContent = this.cardData.priority.toLowerCase();
-    cardFooter.appendChild(status);
+
+    const changePriorityPanel = document.createElement<"div">("div");
+    changePriorityPanel.classList.add("change-priority-panel");
+
+    const filteredPriority = PriorityTypes.filter(
+      (priority) => priority !== this.cardData.priority
+    );
+
+    filteredPriority.forEach(priority => {
+      const buttonElement = document.createElement<"button">("button");
+      const icon = document.createElement<"div">("div");
+      const text = document.createElement<"p">("p");
+      text.textContent = priority.toLowerCase();
+      icon.classList.add("status-icon");
+      icon.style.backgroundColor = priorityColor[priority].backgroundColor;
+      buttonElement.appendChild(icon);
+      buttonElement.appendChild(text);
+
+      buttonElement.addEventListener("click", () => {
+        this.cardData.priority = priority;
+        MyStorageManager.ModifyPriority(this.cardData.uuid, priority);
+      });
+
+      changePriorityPanel.appendChild(buttonElement);
+    });
+
+    priorityContainer.appendChild(statusIcon);
+    priorityContainer.appendChild(status);
+
+    priorityContainer.addEventListener("click", () => {
+      changePriorityPanel.classList.toggle("active");
+    })
+
+    cardFooter.appendChild(changePriorityPanel);
+    cardFooter.appendChild(priorityContainer);
 
     const trashButton = document.createElement<"button">("button");
     trashButton.classList.add("trash-button");
@@ -144,5 +184,7 @@ const priorityColor = {
   [Priority.IMPORTANT]: { backgroundColor: "#ea580c" },
   [Priority.URGENT]: { backgroundColor: "#dc2626" },
 };
+
+const PriorityTypes = [Priority.CASUAL, Priority.IMPORTANT, Priority.URGENT];
 
 export default Card;
